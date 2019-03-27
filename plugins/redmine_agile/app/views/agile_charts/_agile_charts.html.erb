@@ -1,0 +1,15 @@
+<% if User.current.allowed_to?(:view_agile_charts, @project, :global => true) %>
+<h3><%= l(:label_agile_chart_plural) %></h3>
+<ul>
+  <li><%= link_to l(:label_agile_charts_issues_burndown), {:controller => "agile_charts", :action => "show", :chart => "issues_burndown", :project_id => @project}, :class => "#{'selected' if @chart == 'issues_burndown'}" %></li>
+   
+  <li><%= link_to l(:label_agile_charts_burnup), "#", :onclick => "showModal('upgrade-to-pro', '557px');", :class => "#{'selected' if @chart == 'burnup'}" %></li>
+  <li><%= link_to l(:label_agile_charts_issues_velocity),  "#", :onclick => "showModal('upgrade-to-pro', '557px');", :class => "#{'selected' if @chart == 'issues_velocity'}" %></li>
+  <li><%= link_to l(:label_agile_charts_lead_time), "#", :onclick => "showModal('upgrade-to-pro', '557px');", :class => "#{'selected' if @chart == 'lead_time'}" %></li>
+  <li><%= link_to l(:label_agile_charts_trackers_cumulative_flow),  "#", :onclick => "showModal('upgrade-to-pro', '557px');", :class => "#{'selected' if @chart == 'trackers_cumulative_flow'}" %></li>
+   
+</ul>
+<% end %>
+ 
+  <%= render :partial => "bitnami/pro_popup" %>
+ 

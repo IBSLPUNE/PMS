@@ -1,0 +1,40 @@
+# This is a sample build configuration for Ruby.
+# Check our guides at https://confluence.atlassian.com/x/8r-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+pipelines:
+  default:
+    - step:
+        name: New ruby
+        image: ruby:2.4.1
+        script:
+          - bundle install
+          - bundle exec rake test DB=sqlite
+          - bundle exec rake test DB=postgresql
+          - bundle exec rake test DB=mysql
+        services:
+          - mysql
+          - postgres
+    - step:
+        name: Old ruby
+        image: ruby:1.9.3
+        script:
+          - bundle install
+          - bundle exec rake test DB=mysql
+        services:
+          - mysql
+
+definitions:
+  services:
+    mysql:
+      image: mysql:5.7
+      environment:
+        MYSQL_DATABASE: redmine_crm_test
+        MYSQL_ROOT_PASSWORD: password
+    postgres:
+      image: postgres
+      environment:
+        POSTGRES_DB: redmine_crm_test
+        POSTGRES_PASSWORD: password
