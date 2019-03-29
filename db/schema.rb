@@ -12,22 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_09_23_091603) do
 
-  create_table "agile_colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "container_type"
-    t.integer "container_id"
-    t.string "color"
-    t.index ["container_id"], name: "index_agile_colors_on_container_id"
-    t.index ["container_type"], name: "index_agile_colors_on_container_type"
-  end
-
-  create_table "agile_data", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "issue_id"
-    t.integer "position"
-    t.integer "story_points"
-    t.index ["issue_id"], name: "index_agile_data_on_issue_id"
-    t.index ["position"], name: "index_agile_data_on_position"
-  end
-
   create_table "attachments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "container_id"
     t.string "container_type", limit: 30
